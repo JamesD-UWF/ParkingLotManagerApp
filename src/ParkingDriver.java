@@ -14,15 +14,13 @@ public class ParkingDriver {
         frame.setBounds(100, 100, 991, 683);
 
         JLabel titleLabel = new JLabel("Parking Management Software");
-        titleLabel.setBounds(206, 23, 544, 43);
+        titleLabel.setBounds(0, 10, 500, 43);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18)); // Adjust font and size if needed
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        JPanel titlePanel = new JPanel();
-        titlePanel.add(titleLabel);
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPane.setBounds(10, 30, 935, 478);
+        tabbedPane.setBounds(10, 50, 935, 478);
         JPanel tab1 = new DashboardTab(DB);
         JPanel tab2 = new JPanel();
         JPanel tab3 = new JPanel();
@@ -43,8 +41,8 @@ public class ParkingDriver {
 
 
         JPanel mainPanel = new JPanel(null);
-        mainPanel.add(titlePanel, BorderLayout.NORTH);
-        mainPanel.add(tabbedPane, BorderLayout.CENTER);
+        mainPanel.add(titleLabel, BorderLayout.NORTH);
+        mainPanel.add(tabbedPane, BorderLayout.SOUTH);
 
         frame.add(mainPanel);
 

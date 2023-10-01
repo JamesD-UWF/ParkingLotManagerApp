@@ -19,7 +19,7 @@ public class DebugTab extends JPanel{
 
         saveButton = new JButton("Print Lot DB to console");
         saveButton.addActionListener(new saveButton());
-        saveButton.setBounds(10, 180, 180, 25);
+        saveButton.setBounds(10, 10, 180, 25);
 
         this.add(label1);
         this.add(saveButton);
