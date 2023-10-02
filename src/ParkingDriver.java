@@ -27,7 +27,8 @@ public class ParkingDriver {
         JPanel tab4 = new JPanel();
         JPanel tab5 = new JPanel();
         JPanel tab6 = new SettingsTab(DB);
-        JPanel tab7 = new DebugTab(DB);
+        JPanel tab7 = new PersonsTab(DB);
+        JPanel tab8 = new DebugTab(DB);
 
 
         tabbedPane.addTab("Dashboard", tab1);
@@ -36,8 +37,8 @@ public class ParkingDriver {
         tabbedPane.addTab("Remove Vehicle", tab4);
         tabbedPane.addTab("Display Parking Capacity", tab5);
         tabbedPane.addTab("Settings", tab6);
-        tabbedPane.addTab("Debug", tab7);
-
+        tabbedPane.addTab("People", tab7);
+        tabbedPane.addTab("Debug", tab8);
 
 
         JPanel mainPanel = new JPanel(null);
