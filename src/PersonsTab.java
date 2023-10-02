@@ -4,12 +4,13 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class PersonsTab extends JPanel{
-    JLabel createLPersonLabel, deletePersonLabel;
-    JTextField lotSizeField, personNameField, deletePersonNameField;
-    JButton saveButton, deleteButton;
-    JTextPane display;
-    JScrollPane jsp;
-    ParkingDB DB;
+    private final JLabel addIDLabel;
+    private final JLabel createLPersonLabel, addLisenceLabel, deletePersonLabel;
+    private final JTextField licenseField, personNameField, idNumberField, deletePersonNameField;
+    private final JButton saveButton, deleteButton;
+    private final JTextPane display;
+    private final JScrollPane jsp;
+    private final ParkingDB DB;
 
 
     public PersonsTab(ParkingDB DB) throws SQLException {
@@ -19,11 +20,20 @@ public class PersonsTab extends JPanel{
         createLPersonLabel = new JLabel("Add Person Here");
         createLPersonLabel.setBounds(10, 20, 300, 100);
 
+        addLisenceLabel = new JLabel("Add Plate Number Here");
+        addLisenceLabel.setBounds(200, 20, 300, 100);
+
         personNameField = new JTextField();
         personNameField.setBounds(10, 83, 180, 25);
 
-        lotSizeField = new JTextField();
-        lotSizeField.setBounds(200, 83, 180, 25);
+        addIDLabel = new JLabel("Type Person Identifier Here");
+        addIDLabel.setBounds(10, 75, 300, 100);
+
+        idNumberField = new JTextField();
+        idNumberField.setBounds(10, 135, 180, 25);
+
+        licenseField = new JTextField();
+        licenseField.setBounds(200, 83, 180, 25);
 
 
         deletePersonLabel = new JLabel("Remove Person Here");
@@ -35,7 +45,7 @@ public class PersonsTab extends JPanel{
 
         saveButton = new JButton("Add Person");
         saveButton.addActionListener(new saveButton());
-        saveButton.setBounds(10, 120, 180, 25);
+        saveButton.setBounds(10, 167, 180, 25);
 
         deleteButton = new JButton("Remove Person");
         deleteButton.addActionListener(new deleteButton());
@@ -49,7 +59,11 @@ public class PersonsTab extends JPanel{
 
 
         this.add(createLPersonLabel);
+        this.add(addLisenceLabel);
         this.add(personNameField);
+        this.add(addIDLabel);
+        this.add(idNumberField);
+        this.add(licenseField);
         this.add(saveButton);
         this.add(deleteButton);
         this.add(deletePersonLabel);
@@ -63,8 +77,8 @@ public class PersonsTab extends JPanel{
         public void actionPerformed(ActionEvent e) {
             try {
                 String name = personNameField.getText();
-                String capacity = lotSizeField.getText();
-                DB.insertLot(name, capacity);
+                String lisence = licenseField.getText();
+                DB.insertLot(name, lisence);
                 System.out.println("Lot Creation Successful!");
                 display.setText(DB.getLotEntries());
             } catch (SQLException ex) {

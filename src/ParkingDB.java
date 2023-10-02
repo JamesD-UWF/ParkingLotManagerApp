@@ -1,4 +1,3 @@
-import java.awt.desktop.UserSessionEvent;
 import java.sql.*;
 
 import static java.lang.Integer.parseInt;
@@ -12,6 +11,9 @@ public class ParkingDB {
             conn = DriverManager.getConnection("jdbc:sqlite:csc205.db");
             System.out.println("Opened database connection!");
             createLotTable();
+            System.out.println("Lot Table Created");
+            createPerson();
+            System.out.println("Person Table Created");
 
         } catch (SQLException e) {
 
@@ -45,16 +47,37 @@ public class ParkingDB {
         stat.execute(createLotTable);
     }
 
-    public void createVehicleTable() throws SQLException {
-        String createTable = "" + "CREATE TABLE IF NOT EXISTS VehicleInfo " +
-                "( lotPermitted VARCHAR(20) , liscencePlate VARCHAR(7), make VARCHAR(20), model VARCHAR(20));";
-        Statement stat = conn.createStatement();
-        stat.execute(createTable);
+    public void insertLot(String lotName, String capacity) throws SQLException{
+
+        String insertLot = "INSERT INTO ParkingLots (lotName, capacity) VALUES (?, ?);"; // default account
+        PreparedStatement pstmt = conn.prepareStatement(insertLot);
+        pstmt.setString(1, lotName);
+        pstmt.setString(2, capacity);
+        pstmt.executeUpdate();
     }
 
     public void createPerson() throws SQLException {
         String createTable = "" + "CREATE TABLE IF NOT EXISTS Persons " +
-                "( idNumber VARCHAR(10), licensePlate VARCHAR(7));";
+                "( idNumber VARCHAR(10), licensePlate VARCHAR(7), name VARCHAR(20) );";
+        Statement stat = conn.createStatement();
+        stat.execute(createTable);
+    }
+
+    public void displayPersonTable() throws SQLException{
+        String selectSQL = "SELECT * from Persons";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(selectSQL);
+
+        System.out.println("---------- Person DB TABLE ----------");
+        while(rs.next()) {
+            String People = "Name: " + rs.getString("lotName") + " | Capacity: " + rs.getString("capacity");
+            System.out.println();
+        }
+    }
+
+    public void createVehicleTable() throws SQLException {
+        String createTable = "" + "CREATE TABLE IF NOT EXISTS VehicleInfo " +
+                "( lotPermitted VARCHAR(20) , liscencePlate VARCHAR(7), make VARCHAR(20), model VARCHAR(20));";
         Statement stat = conn.createStatement();
         stat.execute(createTable);
     }
@@ -80,16 +103,9 @@ public class ParkingDB {
         stat.execute(createLotTable);
     }
 
-    public void insertLot(String lotName, String capacity) throws SQLException{
 
-        String insertLot = "INSERT INTO ParkingLots (lotName, capacity) VALUES (?, ?);"; // default account
-        PreparedStatement pstmt = conn.prepareStatement(insertLot);
-        pstmt.setString(1, lotName);
-        pstmt.setString(2, capacity);
-        pstmt.executeUpdate();
-    }
 
-    public void displayDatabase() throws SQLException{
+    public void displayLotTable() throws SQLException{
         String selectSQL = "SELECT * from ParkingLots";
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(selectSQL);

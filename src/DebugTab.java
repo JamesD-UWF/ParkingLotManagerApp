@@ -30,7 +30,7 @@ public class DebugTab extends JPanel{
     private class saveButton implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
-                DB.displayDatabase();
+                DB.displayLotTable();
             } catch (SQLException ex) {
                 System.out.print("Table Creation Failed!");
             }
