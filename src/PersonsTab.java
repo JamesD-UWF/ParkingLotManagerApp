@@ -79,10 +79,10 @@ public class PersonsTab extends JPanel{
                 String name = personNameField.getText();
                 String lisence = licenseField.getText();
                 DB.insertLot(name, lisence);
-                System.out.println("Lot Creation Successful!");
+                System.out.println("Person Adding Successful!");
                 display.setText(DB.getLotEntries());
             } catch (SQLException ex) {
-                System.out.print("Lot Creation Failed!");
+                System.out.print("Person Adding Failed!");
             }
         }
     }
@@ -92,10 +92,10 @@ public class PersonsTab extends JPanel{
             try {
                 String name = deletePersonNameField.getText();
                 DB.deleteLotEntry(name);
-                System.out.println("Lot Deletion Successful!");
+                System.out.println("Person Deletion Successful!");
                 display.setText(DB.getLotEntries());
             } catch (SQLException ex) {
-                System.out.print("Lot Deletion Failed!");
+                System.out.print("Person Deletion Failed!");
             }
         }
     }
