@@ -53,7 +53,7 @@ public class PersonsTab extends JPanel{
 
         display = new JTextPane();
         jsp = new JScrollPane(display);
-        jsp.setBounds(450, 59, 229, 250);
+        jsp.setBounds(450, 60, 229, 250);
         display.setText(DB.getLotEntries());
         display.setEditable(false);
 
